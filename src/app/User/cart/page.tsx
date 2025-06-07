@@ -8,6 +8,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { X, Plus, Minus, ShieldCheck, Truck, CreditCard } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 // Define cart item type
 type CartItem = {
@@ -212,9 +213,11 @@ export default function CartPage() {
                           {/* Product Image */}
                           <div className="flex-shrink-0 relative">
                             <div className="rounded-xl w-32 h-32 sm:w-40 sm:h-40 overflow-hidden shadow-md group-hover:shadow-lg transition-shadow">
-                              <img
+                              <Image
                                 src={item.image}
                                 alt={item.name}
+                                  width={400}
+  height={400}
                                 className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
                               />
                             </div>

@@ -8,6 +8,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { X, Plus, Minus, ShieldCheck, Truck, CreditCard, ArrowLeft, Check, Lock } from 'lucide-react';
 import Link from "next/link";
+import Image from "next/image";
 
 type CartItem = {
   id: number;
@@ -498,9 +499,11 @@ export default function CheckoutPage() {
                     <div key={item.id} className="flex items-center justify-between py-3 border-b border-gray-200 last:border-0">
                       <div className="flex items-center">
                         <div className="w-16 h-16 rounded-lg overflow-hidden mr-4">
-                          <img 
+                          <Image 
                             src={item.image} 
                             alt={item.name} 
+                              width={400}
+  height={400}
                             className="w-full h-full object-cover"
                           />
                         </div>
