@@ -11,7 +11,7 @@ import { useRouter } from 'next/navigation';
 interface RelatedProduct {
   id: number;
   name: string;
-  price: string;
+  price: number;
   image: string;
 }
 
