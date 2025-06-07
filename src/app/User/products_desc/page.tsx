@@ -28,7 +28,7 @@ export default function ProductPage() {
   const product = {
     id: 1,
     name: "Premium Leather Jacket",
-    price: 299.99,
+    price: 25999.99,
     description: "Handcrafted from the finest leather, this jacket offers both style and durability. Designed for the modern man who appreciates timeless elegance.",
     details: [
       "100% Genuine Leather",
@@ -60,19 +60,19 @@ export default function ProductPage() {
     {
       id: 2,
       name: "Classic Denim Shirt",
-      price: 89.99,
+      price: 899.99,
       image: "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
     },
     {
       id: 3,
       name: "Slim Fit Chinos",
-      price: 79.99,
+      price: 799.99,
       image: "https://images.unsplash.com/photo-1595341888016-a392ef81b7de?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
     },
     {
       id: 4,
       name: "Designer Sneakers",
-      price: 149.99,
+      price: 1499.99,
       image: "https://images.unsplash.com/photo-1549298916-b41d501d3772?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
     }
   ];
@@ -201,7 +201,7 @@ export default function ProductPage() {
               
               {/* Price */}
               <div className="text-3xl font-light text-gray-900 mb-8">
-                ${product.price.toFixed(2)}
+                RS {product.price.toFixed(2)}
               </div>
               
               {/* Description */}
@@ -362,7 +362,7 @@ function RelatedProductCard({ product, index }: { product: any, index: number })
         <h3 className="text-xl font-light text-gray-900 mb-2 group-hover:font-normal transition-all">
           {product.name}
         </h3>
-        <p className="text-lg font-medium text-gray-900">${product.price.toFixed(2)}</p>
+        <p className="text-lg font-medium text-gray-900">RS {product.price.toFixed(2)}</p>
         
         {/* Quick Add to Cart */}
         <div className="mt-6 flex justify-between items-center">

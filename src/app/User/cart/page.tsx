@@ -33,25 +33,25 @@ export default function CartPage() {
   const recentlyViewed = [
     {
       name: "Modern Sunglasses",
-      price: 89.99,
+      price: 899.99,
       image:
         "https://images.unsplash.com/photo-1572635196237-14b3f281503f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
     },
     {
       name: "Leather Handbag",
-      price: 199.99,
+      price: 5999.99,
       image:
         "https://images.unsplash.com/photo-1584917865442-de89df76afd3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
     },
     {
       name: "Classic Denim Shirt",
-      price: 49.99,
+      price: 4999.99,
       image:
         "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     },
     {
       name: "Minimalist Watch",
-      price: 159.99,
+      price: 1599.99,
       image:
         "https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
     },
@@ -65,7 +65,7 @@ export default function CartPage() {
           {
             id: 1,
             name: "Premium Leather Jacket",
-            price: 299.99,
+            price: 25999.99,
             quantity: 1,
             size: "M",
             image:
@@ -74,7 +74,7 @@ export default function CartPage() {
           {
             id: 2,
             name: "Classic Denim Shirt",
-            price: 89.99,
+            price: 8599.99,
             quantity: 2,
             size: "L",
             image:
@@ -83,7 +83,7 @@ export default function CartPage() {
           {
             id: 3,
             name: "Designer Sneakers",
-            price: 149.99,
+            price: 1499.99,
             quantity: 1,
             size: "42",
             image:
@@ -266,7 +266,7 @@ export default function CartPage() {
 
                               {/* Price */}
                               <div className="text-xl font-light text-gray-900 mt-4 sm:mt-0">
-                                Rs{(item.price * item.quantity).toFixed(2)}
+                                Rs {(item.price * item.quantity).toFixed(2)}
                               </div>
                             </div>
                           </div>
@@ -323,7 +323,7 @@ export default function CartPage() {
                       Free Shipping on Orders Over Rs200
                     </h3>
                     <p className="text-gray-600">
-                      You`re Rs{(200 - subtotal).toFixed(2)} away from free
+                      You`re Rs {(200 - subtotal).toFixed(2)} away from free
                       shipping!
                     </p>
                     <div className="mt-4 w-full bg-gray-200 rounded-full h-2">
@@ -352,20 +352,20 @@ export default function CartPage() {
                 <div className="space-y-4">
                   <div className="flex justify-between">
                     <span className="text-gray-600">Subtotal</span>
-                    <span className="font-light">${subtotal.toFixed(2)}</span>
+                    <span className="font-light">RS {subtotal.toFixed(2)}</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600">Shipping</span>
-                    <span className="font-light">${shipping.toFixed(2)}</span>
+                    <span className="font-light">RS {shipping.toFixed(2)}</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600">Tax</span>
-                    <span className="font-light">${tax.toFixed(2)}</span>
+                    <span className="font-light">RS {tax.toFixed(2)}</span>
                   </div>
                   <div className="flex justify-between pt-4 border-t border-gray-200">
                     <span className="text-lg font-light">Total</span>
                     <span className="text-xl font-light">
-                      ${total.toFixed(2)}
+                      RS {total.toFixed(2)} 
                     </span>
                   </div>
                 </div>
@@ -506,7 +506,7 @@ export default function CartPage() {
                       {item.name}
                     </h3>
                     <p className="text-gray-600 font-medium">
-                      Rs{item.price.toFixed(2)}
+                      Rs {item.price.toFixed(2)}
                     </p>
                     <button className="cursor-pointer mt-4 w-full py-3 bg-gray-100 text-gray-900 rounded-xl text-sm font-light tracking-wider group-hover:bg-black group-hover:text-white transition-all duration-300">
                       Add to Cart

@@ -95,8 +95,7 @@ export default function HomePage() {
         {/* Video Container */}
         <div className="absolute inset-0 z-0">
           <video 
-            preload="auto" 
-            poster="/video-poster.jpg"      
+            preload="auto"     
             autoPlay 
             loop 
             muted 
@@ -119,7 +118,7 @@ export default function HomePage() {
           <p className="text-xl md:text-2xl mb-10 max-w-2xl mx-auto">
             Discover the timeless elegance of our new season collection
           </p>
-          <Link href="/User/products"><button className="px-10 py-4 bg-transparent border-2 border-white text-lg font-medium tracking-wider hover:bg-white hover:text-black transition-all duration-300 group relative overflow-hidden">
+          <Link href="/User/products"><button className="cursor-pointer px-10 py-4 bg-transparent border-2 border-white text-lg font-medium tracking-wider hover:bg-white hover:text-black transition-all duration-300 group relative overflow-hidden">
             <span className="relative z-10">SHOP NOW</span>
             <span className="absolute inset-0 bg-white transform origin-top scale-y-0 group-hover:scale-y-100 transition-transform duration-300"></span>
           </button></Link>
@@ -199,10 +198,10 @@ export default function HomePage() {
           
           {/* View All Button */}
           <div className="text-center mt-16" data-aos="fade-up" data-aos-delay="200">
-            <button className="px-8 py-3 bg-white text-black rounded-full text-base font-light tracking-wider hover:bg-gray-400 cursor-pointer transition-colors duration-300 inline-flex items-center space-x-2">
+            <Link href="/User/products"><button className="px-8 py-3 bg-white text-black rounded-full text-base font-light tracking-wider hover:bg-gray-400 cursor-pointer transition-colors duration-300 inline-flex items-center space-x-2">
               <span>View All Products</span>
               <ArrowRight className="h-4 w-4" />
-            </button>
+            </button></Link>
           </div>
         </div>
       </section>

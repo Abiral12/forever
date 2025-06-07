@@ -56,7 +56,7 @@ export default function CheckoutPage() {
     city: '',
     state: '',
     zip: '',
-    country: 'United States'
+    country: 'Nepal'
   });
   
   const [payment, setPayment] = useState<Payment>({
@@ -92,7 +92,7 @@ export default function CheckoutPage() {
 
   // Calculate cart totals
   const subtotal = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-  const shipping = shippingMethod === 'express' ? 25.00 : 15.00;
+  const shipping = shippingMethod === 'express' ? 250.00 : 150.00;
   const tax = subtotal * 0.08;
   const total = subtotal + shipping + tax;
 
@@ -160,14 +160,14 @@ export default function CheckoutPage() {
     );
   };
 
-  const validateStep2 = () => {
-    return (
-      payment.cardNumber.replace(/\s/g, '').length === 16 &&
-      payment.cardName.trim() !== '' &&
-      payment.expiry.length === 5 &&
-      payment.cvv.length === 3
-    );
-  };
+  // const validateStep2 = () => {
+  //   return (
+  //     payment.cardNumber.replace(/\s/g, '').length === 16 &&
+  //     payment.cardName.trim() !== '' &&
+  //     payment.expiry.length === 5 &&
+  //     payment.cvv.length === 3
+  //   );
+  // };
 
   const handleSubmitOrder = () => {
     // In a real app, this would send data to a backend
@@ -233,7 +233,7 @@ export default function CheckoutPage() {
                   value={address.firstName}
                   onChange={handleAddressChange}
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent"
-                  placeholder="John"
+                  placeholder="Nabin"
                 />
               </div>
               
@@ -245,7 +245,7 @@ export default function CheckoutPage() {
                   value={address.lastName}
                   onChange={handleAddressChange}
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent"
-                  placeholder="Doe"
+                  placeholder="Kc"
                 />
               </div>
               
@@ -269,7 +269,7 @@ export default function CheckoutPage() {
                   value={address.phone}
                   onChange={handleAddressChange}
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent"
-                  placeholder="(123) 456-7890"
+                  placeholder="+977 9812345678"
                 />
               </div>
               
@@ -281,7 +281,7 @@ export default function CheckoutPage() {
                   value={address.address}
                   onChange={handleAddressChange}
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent"
-                  placeholder="123 Main St"
+                  placeholder="koteshwor,Balkumari"
                 />
               </div>
               
@@ -293,7 +293,7 @@ export default function CheckoutPage() {
                   value={address.city}
                   onChange={handleAddressChange}
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent"
-                  placeholder="New York"
+                  placeholder="Kathmandu"
                 />
               </div>
               
@@ -305,7 +305,7 @@ export default function CheckoutPage() {
                   value={address.state}
                   onChange={handleAddressChange}
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent"
-                  placeholder="NY"
+                  placeholder="Bagmati"
                 />
               </div>
               
@@ -329,11 +329,11 @@ export default function CheckoutPage() {
                   onChange={(e) => setAddress(prev => ({ ...prev, country: e.target.value }))}
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent"
                 >
-                  <option>United States</option>
-                  <option>Canada</option>
+                  <option>Nepal</option>
+                  {/* <option>Canada</option>
                   <option>United Kingdom</option>
                   <option>Australia</option>
-                  <option>Germany</option>
+                  <option>Germany</option> */}
                 </select>
               </div>
             </div>
@@ -357,7 +357,7 @@ export default function CheckoutPage() {
                     <p className="text-gray-600 text-sm">3-5 business days</p>
                   </div>
                 </div>
-                <div className="font-medium">${shipping.toFixed(2)}</div>
+                <div className="font-medium">Rs {shipping.toFixed(2)}</div>
               </div>
               
               <div 
@@ -377,7 +377,7 @@ export default function CheckoutPage() {
                     <p className="text-gray-600 text-sm">1-2 business days</p>
                   </div>
                 </div>
-                <div className="font-medium">$25.00</div>
+                <div className="font-medium">Rs 250.00</div>
               </div>
             </div>
             
@@ -432,7 +432,7 @@ export default function CheckoutPage() {
             </div>
             <div className="ml-3">
               <p className="text-sm text-yellow-700">
-                After clicking "Pay with eSewa", you'll be redirected to the eSewa payment page to complete your transaction securely.
+                After clicking ``Pay with eSewa``, you`ll be redirected to the eSewa payment page to complete your transaction securely.
               </p>
             </div>
           </div>
@@ -510,26 +510,26 @@ export default function CheckoutPage() {
                           <p className="text-gray-600 text-sm">Qty: {item.quantity}</p>
                         </div>
                       </div>
-                      <p className="font-medium">${(item.price * item.quantity).toFixed(2)}</p>
+                      <p className="font-medium">RS {(item.price * item.quantity).toFixed(2)}</p>
                     </div>
                   ))}
                   
                   <div className="pt-4 mt-4 border-t border-gray-200">
                     <div className="flex justify-between py-2">
                       <span className="text-gray-600">Subtotal</span>
-                      <span className="font-medium">${subtotal.toFixed(2)}</span>
+                      <span className="font-medium">RS {subtotal.toFixed(2)}</span>
                     </div>
                     <div className="flex justify-between py-2">
                       <span className="text-gray-600">Shipping</span>
-                      <span className="font-medium">${shipping.toFixed(2)}</span>
+                      <span className="font-medium">RS {shipping.toFixed(2)}</span>
                     </div>
                     <div className="flex justify-between py-2">
                       <span className="text-gray-600">Tax</span>
-                      <span className="font-medium">${tax.toFixed(2)}</span>
+                      <span className="font-medium">RS {tax.toFixed(2)}</span>
                     </div>
                     <div className="flex justify-between py-2 mt-2">
                       <span className="text-lg font-medium">Total</span>
-                      <span className="text-lg font-medium">${total.toFixed(2)}</span>
+                      <span className="text-lg font-medium">RS {total.toFixed(2)}</span>
                     </div>
                   </div>
                 </div>

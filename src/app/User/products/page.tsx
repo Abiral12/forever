@@ -20,13 +20,12 @@ export default function ProductCollectionPage() {
       mirror: false,
     });
   }, []);
-
   // Mock product data
   const products = [
     {
       id: 1,
       name: "Premium Leather Jacket",
-      price: "$299.99",
+      price: "RS 25999.99",
       category: "Jackets",
       image:
         "https://images.unsplash.com/photo-1551028719-00167b16eac5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
@@ -34,7 +33,7 @@ export default function ProductCollectionPage() {
     {
       id: 2,
       name: "Classic Denim Shirt",
-      price: "$89.99",
+      price: "RS 899.99",
       category: "Shirts",
       image:
         "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
@@ -42,7 +41,7 @@ export default function ProductCollectionPage() {
     {
       id: 3,
       name: "Slim Fit Chinos",
-      price: "$79.99",
+      price: "RS 799.99",
       category: "Trousers",
       image:
         "https://images.unsplash.com/photo-1595341888016-a392ef81b7de?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
@@ -50,7 +49,7 @@ export default function ProductCollectionPage() {
     {
       id: 4,
       name: "Designer Sneakers",
-      price: "$149.99",
+      price: "RS 1499.99",
       category: "Shoes",
       image:
         "https://images.unsplash.com/photo-1549298916-b41d501d3772?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
@@ -58,7 +57,7 @@ export default function ProductCollectionPage() {
     {
       id: 5,
       name: "Cashmere Sweater",
-      price: "$189.99",
+      price: "RS 1899.99",
       category: "Sweaters",
       image:
         "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
@@ -66,7 +65,7 @@ export default function ProductCollectionPage() {
     {
       id: 6,
       name: "Tailored Blazer",
-      price: "$249.99",
+      price: "RS 24999.99",
       category: "Jackets",
       image:
         "https://images.unsplash.com/photo-1551028719-00167b16eac5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
@@ -74,7 +73,7 @@ export default function ProductCollectionPage() {
     {
       id: 7,
       name: "Cotton Polo Shirt",
-      price: "$59.99",
+      price: "RS 1599.99",
       category: "Shirts",
       image:
         "https://images.unsplash.com/photo-1525450824786-227cbef70703?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
@@ -82,7 +81,7 @@ export default function ProductCollectionPage() {
     {
       id: 8,
       name: "Classic Oxford Shoes",
-      price: "$179.99",
+      price: "RS 1799.99",
       category: "Shoes",
       image:
         "https://images.unsplash.com/photo-1560343090-f0409e92791a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
@@ -90,7 +89,7 @@ export default function ProductCollectionPage() {
     {
       id: 9,
       name: "Wool Overcoat",
-      price: "$349.99",
+      price: "RS 34999.99",
       category: "Jackets",
       image:
         "https://images.unsplash.com/photo-1551028719-00167b16eac5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
@@ -98,7 +97,7 @@ export default function ProductCollectionPage() {
     {
       id: 10,
       name: "Linen Shorts",
-      price: "$69.99",
+      price: "RS 699.99",
       category: "Shorts",
       image:
         "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
@@ -106,7 +105,7 @@ export default function ProductCollectionPage() {
     {
       id: 11,
       name: "Silk Pocket Square",
-      price: "$29.99",
+      price: "RS 2999.99",
       category: "Accessories",
       image:
         "https://images.unsplash.com/photo-1611312449408-fcece27cdbb7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
@@ -114,12 +113,24 @@ export default function ProductCollectionPage() {
     {
       id: 12,
       name: "Leather Belt",
-      price: "$49.99",
+      price: "RS 4999.99",
       category: "Accessories",
       image:
         "https://images.unsplash.com/photo-1584917865442-de89df76afd3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
     },
   ];
+
+  // Helper function to parse price
+  const getPriceValue = (priceStr: string) => {
+    return parseFloat(priceStr.replace("RS", "").trim());
+  };
+
+  // Calculate max price for range slider
+  const maxPriceValue = Math.max(
+    ...products.map((p) => getPriceValue(p.price))
+  );
+  const maxPrice = Math.ceil(maxPriceValue / 1000) * 1000; // Round to nearest 1000
+
 
   // Categories for filtering
   const categories = [
@@ -133,30 +144,30 @@ export default function ProductCollectionPage() {
     "Shorts",
   ];
 
-  // State for filters
+   // State for filters - UPDATED INITIAL RANGE
   const [selectedCategory, setSelectedCategory] = useState("All");
-  const [priceRange, setPriceRange] = useState([0, 500]);
+  const [priceRange, setPriceRange] = useState([0, maxPrice]); // Fixed initial range
   const [sortOption, setSortOption] = useState("featured");
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 
-  // Filter products based on selected filters
+  // Filter products - UPDATED PRICE PARSING
   const filteredProducts = products
     .filter(
       (product) =>
         selectedCategory === "All" || product.category === selectedCategory
     )
     .filter((product) => {
-      const price = parseFloat(product.price.replace("$", ""));
+      const price = getPriceValue(product.price); // Fixed parsing
       return price >= priceRange[0] && price <= priceRange[1];
     })
     .sort((a, b) => {
-      const priceA = parseFloat(a.price.replace("$", ""));
-      const priceB = parseFloat(b.price.replace("$", ""));
+      const priceA = getPriceValue(a.price); // Fixed parsing
+      const priceB = getPriceValue(b.price); // Fixed parsing
 
       if (sortOption === "price-low") return priceA - priceB;
       if (sortOption === "price-high") return priceB - priceA;
-      return a.id - b.id; // Default sorting
+      return a.id - b.id;
     });
 
   // Hero Section
@@ -232,10 +243,9 @@ export default function ProductCollectionPage() {
   };
 
   // Filter Section Component
-  const FilterSection = () => (
+ const FilterSection = () => (
     <div className="bg-white rounded-xl shadow-lg p-6">
       <h3 className="text-lg font-medium text-gray-900 mb-4">Filters</h3>
-
       <div className="space-y-6">
         {/* Category Filter */}
         <div>
@@ -262,20 +272,25 @@ export default function ProductCollectionPage() {
           </div>
         </div>
 
-        {/* Price Filter */}
+       {/* Price Filter - UPDATED */}
         <div>
           <h4 className="text-md font-medium text-gray-700 mb-2">
             Price Range
           </h4>
           <div className="space-y-4">
             <div className="flex justify-between">
-              <span className="text-sm text-gray-500">${priceRange[0]}</span>
-              <span className="text-sm text-gray-500">${priceRange[1]}</span>
+              <span className="text-sm text-gray-500">
+                RS {priceRange[0]}
+              </span>
+              <span className="text-sm text-gray-500">
+                RS {priceRange[1]}
+              </span>
             </div>
             <input
               type="range"
               min="0"
-              max="500"
+              max={maxPrice}
+              step={1000}
               value={priceRange[1]}
               onChange={(e) =>
                 setPriceRange([priceRange[0], parseInt(e.target.value)])
@@ -286,10 +301,11 @@ export default function ProductCollectionPage() {
         </div>
       </div>
 
+      {/* Reset Button - UPDATED RANGE RESET */}
       <button
         onClick={() => {
           setSelectedCategory("All");
-          setPriceRange([0, 500]);
+          setPriceRange([0, maxPrice]); // Reset to full range
         }}
         className="mt-6 w-full px-4 py-2 border border-black text-black rounded-full hover:bg-gray-100 transition-colors"
       >
