@@ -6,7 +6,7 @@ import Footer from "@/components/ux/footer";
 import { useState, useEffect, useRef } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import { X, Plus, Minus, ShieldCheck, Truck, CreditCard, ArrowLeft, Check, Lock } from 'lucide-react';
+import {ShieldCheck,  ArrowLeft, Check, Lock } from 'lucide-react';
 import Link from "next/link";
 import Image from "next/image";
 
@@ -31,12 +31,12 @@ type Address = {
   country: string;
 };
 
-type Payment = {
-  cardNumber: string;
-  cardName: string;
-  expiry: string;
-  cvv: string;
-};
+// type Payment = {
+//   cardNumber: string;
+//   cardName: string;
+//   expiry: string;
+//   cvv: string;
+// };
 
 export default function CheckoutPage() {
   const [currentStep, setCurrentStep] = useState(1);
@@ -60,12 +60,12 @@ export default function CheckoutPage() {
     country: 'Nepal'
   });
   
-  const [payment, setPayment] = useState<Payment>({
-    cardNumber: '',
-    cardName: '',
-    expiry: '',
-    cvv: ''
-  });
+  // const [payment, setPayment] = useState<Payment>({
+  //   cardNumber: '',
+  //   cardName: '',
+  //   expiry: '',
+  //   cvv: ''
+  // });
   
   const [shippingMethod, setShippingMethod] = useState('standard');
   const [orderComplete, setOrderComplete] = useState(false);
@@ -97,55 +97,55 @@ export default function CheckoutPage() {
   const tax = subtotal * 0.08;
   const total = subtotal + shipping + tax;
 
-  // Update item quantity
-  const updateQuantity = (id: number, newQuantity: number) => {
-    if (newQuantity < 1) return;
+  // // Update item quantity
+  // const updateQuantity = (id: number, newQuantity: number) => {
+  //   if (newQuantity < 1) return;
     
-    const updatedItems = cartItems.map(item => 
-      item.id === id ? { ...item, quantity: newQuantity } : item
-    );
+  //   const updatedItems = cartItems.map(item => 
+  //     item.id === id ? { ...item, quantity: newQuantity } : item
+  //   );
     
-    setCartItems(updatedItems);
-    localStorage.setItem('cart', JSON.stringify(updatedItems));
-  };
+  //   setCartItems(updatedItems);
+  //   localStorage.setItem('cart', JSON.stringify(updatedItems));
+  // };
 
-  // Remove item from cart
-  const removeItem = (id: number) => {
-    const updatedItems = cartItems.filter(item => item.id !== id);
-    setCartItems(updatedItems);
-    localStorage.setItem('cart', JSON.stringify(updatedItems));
-  };
+  // // Remove item from cart
+  // const removeItem = (id: number) => {
+  //   const updatedItems = cartItems.filter(item => item.id !== id);
+  //   setCartItems(updatedItems);
+  //   localStorage.setItem('cart', JSON.stringify(updatedItems));
+  // };
 
   const handleAddressChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setAddress(prev => ({ ...prev, [name]: value }));
   };
 
-  const handlePaymentChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
+  // const handlePaymentChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   const { name, value } = e.target;
     
-    // Format card number with spaces every 4 digits
-    if (name === 'cardNumber') {
-      const formattedValue = value
-        .replace(/\D/g, '')
-        .replace(/(\d{4})(?=\d)/g, '$1 ')
-        .substring(0, 19);
-      setPayment(prev => ({ ...prev, [name]: formattedValue }));
-      return;
-    }
+  //   // Format card number with spaces every 4 digits
+  //   if (name === 'cardNumber') {
+  //     const formattedValue = value
+  //       .replace(/\D/g, '')
+  //       .replace(/(\d{4})(?=\d)/g, '$1 ')
+  //       .substring(0, 19);
+  //     setPayment(prev => ({ ...prev, [name]: formattedValue }));
+  //     return;
+  //   }
     
-    // Format expiry date as MM/YY
-    if (name === 'expiry') {
-      const formattedValue = value
-        .replace(/\D/g, '')
-        .replace(/(\d{2})(\d{0,4})/, '$1/$2')
-        .substring(0, 5);
-      setPayment(prev => ({ ...prev, [name]: formattedValue }));
-      return;
-    }
+  //   // Format expiry date as MM/YY
+  //   if (name === 'expiry') {
+  //     const formattedValue = value
+  //       .replace(/\D/g, '')
+  //       .replace(/(\d{2})(\d{0,4})/, '$1/$2')
+  //       .substring(0, 5);
+  //     setPayment(prev => ({ ...prev, [name]: formattedValue }));
+  //     return;
+  //   }
     
-    setPayment(prev => ({ ...prev, [name]: value }));
-  };
+  //   setPayment(prev => ({ ...prev, [name]: value }));
+  // };
 
   const validateStep1 = () => {
     return (

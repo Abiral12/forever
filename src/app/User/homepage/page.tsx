@@ -10,6 +10,20 @@ import Footer from "@/components/ux/footer";
 import Link from "next/link";
 import Image from "next/image";
 
+interface Category {
+  name: string;
+  description: string;
+  image: string;
+}
+
+interface Product {
+  id: number;
+  name: string;
+  price: string;
+  image: string;
+}
+
+
 export default function HomePage() {
   // Initialize AOS
   useEffect(() => {
@@ -356,7 +370,7 @@ export default function HomePage() {
 }
 
 // Updated Category Card Component with Unsplash images
-function CategoryCard({ category, index }: { category: any; index: number }) {
+function CategoryCard({ category, index }: { category: Category; index: number }) {
   const { ref, inView } = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -403,7 +417,7 @@ function CategoryCard({ category, index }: { category: any; index: number }) {
 }
 
 // New Product Card Component
-function ProductCard({ product, index }: { product: any; index: number }) {
+function ProductCard({ product, index }: { product: Product; index: number }) {
   const { ref, inView } = useInView({
     triggerOnce: true,
     threshold: 0.1,

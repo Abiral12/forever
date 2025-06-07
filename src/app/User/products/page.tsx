@@ -5,10 +5,18 @@ import { useState, useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useInView } from "react-intersection-observer";
-import { ArrowRight, Filter, X, ChevronDown, ChevronUp } from "lucide-react";
+import { ArrowRight, Filter, X} from "lucide-react";
 import Navbar from "@/components/ux/navbar";
 import Footer from "@/components/ux/footer";
 import Link from "next/link";
+
+interface Product {
+  id: number;
+  name: string;
+  price: string;
+  category: string;
+  image: string;
+}
 
 export default function ProductCollectionPage() {
   // Initialize AOS
@@ -148,7 +156,7 @@ export default function ProductCollectionPage() {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [priceRange, setPriceRange] = useState([0, maxPrice]); // Fixed initial range
   const [sortOption, setSortOption] = useState("featured");
-  const [isFilterOpen, setIsFilterOpen] = useState(false);
+  // const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 
   // Filter products - UPDATED PRICE PARSING
@@ -202,7 +210,7 @@ export default function ProductCollectionPage() {
   );
 
   // Product Card Component
-  const ProductCard = ({ product, index }: { product: any; index: number }) => {
+  const ProductCard = ({ product, index }: { product: Product; index: number }) => {
     const { ref, inView } = useInView({
       triggerOnce: true,
       threshold: 0.1,

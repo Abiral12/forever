@@ -8,6 +8,13 @@ import 'aos/dist/aos.css';
 import { ArrowLeft, Heart, Star, ShoppingBag, ChevronLeft, ChevronRight } from 'lucide-react'; 
 import { useRouter } from 'next/navigation';
 
+interface RelatedProduct {
+  id: number;
+  name: string;
+  price: string;
+  image: string;
+}
+
 export default function ProductPage() {
   const router = useRouter();
   const [selectedImage, setSelectedImage] = useState(0);
@@ -337,7 +344,7 @@ export default function ProductPage() {
 }
 
 // Related Product Card Component
-function RelatedProductCard({ product, index }: { product: any, index: number }) {
+function RelatedProductCard({ product, index }: { product: RelatedProduct, index: number }) {
   return (
     <div 
       className="bg-white rounded-xl overflow-hidden shadow-lg transform transition-all duration-700 group hover:-translate-y-2 hover:shadow-xl"
