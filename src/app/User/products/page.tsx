@@ -26,6 +26,7 @@ export default function ProductCollectionPage() {
       easing: "ease-in-out",
       once: true,
       mirror: false,
+      startEvent: "DOMContentLoaded",
     });
   }, []);
   // Mock product data
